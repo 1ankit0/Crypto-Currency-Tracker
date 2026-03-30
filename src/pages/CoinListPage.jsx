@@ -28,7 +28,6 @@ export default function CoinListPage({ marketSectionRef }) {
     setSearchedCoin(e.target.value);
   };
 
-
    const filteredCoins = coins.filter((coin) => {
    return ( 
     coin.name.toLowerCase().includes(searchedCoin.toLowerCase().trim()) || coin.symbol.toLowerCase().includes(searchedCoin.toLowerCase().trim())
