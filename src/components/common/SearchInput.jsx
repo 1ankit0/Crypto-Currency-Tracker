@@ -1,4 +1,6 @@
-export default function SearchInput() {
+import { useRef, useState } from "react"
+
+export default function SearchInput({ onChangeValue}) {
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
       <div className="flex flex-1 items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
@@ -19,9 +21,11 @@ export default function SearchInput() {
           type="text"
           placeholder="Search cryptocurrency"
           className="w-full bg-transparent text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none"
+          onChange={onChangeValue}
         />
       </div>
-      <button className="rounded-2xl border border-slate-200 bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-sm">
+      <button className="cursor-pointer rounded-2xl border border-slate-200 bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-sm"
+      >
         Explore Coins
       </button>
     </div>

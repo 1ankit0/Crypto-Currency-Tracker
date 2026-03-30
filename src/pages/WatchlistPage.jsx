@@ -2,8 +2,10 @@ import PageSection from '../components/layout/PageSection.jsx'
 import PriceChangeUp from '../components/common/PriceChangeUp.jsx'
 import PriceChangeDown from '../components/common/PriceChangeDown.jsx'
 import WatchlistRow from '../components/watchlist/WatchlistRow.jsx'
+import { useEffect, useRef } from 'react'
 
-export default function WatchlistPage() {
+export default function WatchlistPage({scrollToMarketSnapshot}) {
+
   return (
     <PageSection
       tag="Watchlist"
@@ -14,10 +16,12 @@ export default function WatchlistPage() {
         <div className="flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Watchlist Summary</p>
-            <h3 className="text-xl font-semibold text-slate-900">4 Active Coins</h3>
+            <h3 className="text-xl font-semibold text-slate-900">2 Active Coins</h3>
             <p className="text-sm text-slate-500">Personalized alerts start here.</p>
           </div>
-          <button className="rounded-2xl border border-slate-200 bg-slate-900 px-4 py-2 text-sm font-semibold text-white">
+          <button className="rounded-2xl border border-slate-200 bg-slate-900 px-4 py-2 text-sm font-semibold text-white"
+          onClick={scrollToMarketSnapshot}
+          >
             Add New Coin
           </button>
         </div>
@@ -39,28 +43,6 @@ export default function WatchlistPage() {
             symbol="ETH"
             price="$3,420.70"
             change={<PriceChangeDown value="-1.4%" />}
-            action={
-              <button className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
-                Remove
-              </button>
-            }
-          />
-          <WatchlistRow
-            name="Solana"
-            symbol="SOL"
-            price="$143.10"
-            change={<PriceChangeUp value="+6.8%" />}
-            action={
-              <button className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
-                Remove
-              </button>
-            }
-          />
-          <WatchlistRow
-            name="Chainlink"
-            symbol="LINK"
-            price="$17.33"
-            change={<PriceChangeDown value="-0.6%" />}
             action={
               <button className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
                 Remove

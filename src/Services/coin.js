@@ -1,10 +1,20 @@
 import axios from 'axios'
 
-const coinData = ()=>{
+const coinData = async({start=0, limit=20})=>{
     try {
-        const res = axios.get()
-        return res
+        const res = await axios.get(`https://api.coinlore.net/api/tickers/`,
+            {
+                params: {
+                    start,
+                    limit
+                }
+            }
+        )
+        return res.data
     } catch (error) {
-        console.log('error', error)
+        console.log('error in fetching coinData:', error)
+        return error
     }
 }
+
+export default coinData
