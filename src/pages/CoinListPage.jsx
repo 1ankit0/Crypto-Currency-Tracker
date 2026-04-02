@@ -9,15 +9,9 @@ import coinData from "../Services/coin.js";
 
 export default function CoinListPage({ coins, marketSectionRef }) {
   
-  const [watchlist, setWatchlist] = useState([])
-  
   const [searchedCoin, setSearchedCoin] = useState("");
 
   const handlePriceChange = () => {};
-
-  const handleAddToWishlist = () => {
-
-    };
 
 
   const onChangeValue = (e) => {
@@ -83,7 +77,7 @@ export default function CoinListPage({ coins, marketSectionRef }) {
                       action={
                         <button
                           className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600"
-                          onClick={handleAddToWishlist}
+                          onClick={() => onAddToWatchlist(coin)}
                         >
                           Add
                         </button>

@@ -4,7 +4,7 @@ import PriceChangeDown from '../components/common/PriceChangeDown.jsx'
 import WatchlistRow from '../components/watchlist/WatchlistRow.jsx'
 import { useEffect, useRef, useState } from 'react'
 
-export default function WatchlistPage({scrollToMarketSnapshot}) {
+export default function WatchlistPage({ coins ,scrollToMarketSnapshot}) {
 
   return (
     <PageSection
@@ -28,17 +28,20 @@ export default function WatchlistPage({scrollToMarketSnapshot}) {
 
         <div className="flex flex-col gap-3">
           {
-            <WatchlistRow
-            name="Ethereum"
-            symbol="ETH"
-            price="$3,420.70"
-            change={<PriceChangeDown value="-1.4%" />}
-            action={
-              <button className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
-                Remove
-              </button>
-            }
-          />
+            coins.map((coin)=>{
+              <WatchlistRow
+              key={coin.id}
+              name={coin.name}
+              symbol={coin.symbol}
+              price={coin.price}
+              change={<PriceChangeDown value='...' />}
+              action={
+                <button className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
+                  Remove
+                </button>
+              }
+            />
+            })
           }
         </div>
 

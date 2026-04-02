@@ -9,6 +9,16 @@ function App() {
   const marketSectionRef = useRef(null)
 
   const [coins, setCoins] = useState([]);
+  const [watchlist, setWatchlist] = useState([])
+
+  const watchlistCoin = ((prev))=>{
+    const alreadyAdded = prev.some((item)=> item.id === coin.id) 
+    if (alreadyAdded) {
+      return prev
+    }
+    return [...prev, coins]
+  } 
+  setWatchlist(watchlist())
 
   const scrollToMarketSnapshot = ()=>{
     marketSectionRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'})
@@ -26,7 +36,7 @@ function App() {
     <AppShell>
       <CoinListPage coins={coins} marketSectionRef={marketSectionRef}/>
       <CoinDetailPage />
-      <WatchlistPage scrollToMarketSnapshot={scrollToMarketSnapshot} />
+      <WatchlistPage coins={coins} scrollToMarketSnapshot={scrollToMarketSnapshot} />
     </AppShell>
   )
 }
