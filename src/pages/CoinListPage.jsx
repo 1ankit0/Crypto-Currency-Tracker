@@ -7,22 +7,18 @@ import CoinRow from "../components/coins/CoinRow.jsx";
 import { useEffect, useState } from "react";
 import coinData from "../Services/coin.js";
 
-export default function CoinListPage({ marketSectionRef }) {
-  const [coins, setCoins] = useState([]);
-
+export default function CoinListPage({ coins, marketSectionRef }) {
+  
+  const [watchlist, setWatchlist] = useState([])
+  
   const [searchedCoin, setSearchedCoin] = useState("");
-
-  useEffect(() => {
-    const loadCoinData = async () => {
-      const renderData = await coinData({ start: 0, limit: 5 });
-      setCoins(renderData.data);
-    };
-    loadCoinData();
-  }, []);
 
   const handlePriceChange = () => {};
 
-  const handleAddToWishlist = () => {};
+  const handleAddToWishlist = () => {
+
+    };
+
 
   const onChangeValue = (e) => {
     setSearchedCoin(e.target.value);

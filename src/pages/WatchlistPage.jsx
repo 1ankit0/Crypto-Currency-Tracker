@@ -2,7 +2,7 @@ import PageSection from '../components/layout/PageSection.jsx'
 import PriceChangeUp from '../components/common/PriceChangeUp.jsx'
 import PriceChangeDown from '../components/common/PriceChangeDown.jsx'
 import WatchlistRow from '../components/watchlist/WatchlistRow.jsx'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function WatchlistPage({scrollToMarketSnapshot}) {
 
@@ -19,7 +19,7 @@ export default function WatchlistPage({scrollToMarketSnapshot}) {
             <h3 className="text-xl font-semibold text-slate-900">2 Active Coins</h3>
             <p className="text-sm text-slate-500">Personalized alerts start here.</p>
           </div>
-          <button className="rounded-2xl border border-slate-200 bg-slate-900 px-4 py-2 text-sm font-semibold text-white"
+          <button className="cursor-pointer rounded-2xl border border-slate-200 bg-slate-900 px-4 py-2 text-sm font-semibold text-white"
           onClick={scrollToMarketSnapshot}
           >
             Add New Coin
@@ -27,18 +27,8 @@ export default function WatchlistPage({scrollToMarketSnapshot}) {
         </div>
 
         <div className="flex flex-col gap-3">
-          <WatchlistRow
-            name="Bitcoin"
-            symbol="BTC"
-            price="$62,140.22"
-            change={<PriceChangeUp value="+3.2%" />}
-            action={
-              <button className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
-                Remove
-              </button>
-            }
-          />
-          <WatchlistRow
+          {
+            <WatchlistRow
             name="Ethereum"
             symbol="ETH"
             price="$3,420.70"
@@ -49,6 +39,7 @@ export default function WatchlistPage({scrollToMarketSnapshot}) {
               </button>
             }
           />
+          }
         </div>
 
         <div className="grid gap-4 lg:grid-cols-2">
