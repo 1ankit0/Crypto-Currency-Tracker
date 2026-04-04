@@ -7,7 +7,7 @@ import CoinRow from "../components/coins/CoinRow.jsx";
 import { useEffect, useState } from "react";
 import coinData from "../Services/coin.js";
 
-export default function CoinListPage({ coins, marketSectionRef,  }) {
+export default function CoinListPage({ coins, marketSectionRef,onAddToWatchlist  }) {
   
   const [searchedCoin, setSearchedCoin] = useState("");
 
@@ -76,7 +76,7 @@ export default function CoinListPage({ coins, marketSectionRef,  }) {
                       change={handlePriceChange}
                       action={
                         <button
-                          className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600"
+                          className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600"
                           onClick={() => onAddToWatchlist(coin)}
                         >
                           Add

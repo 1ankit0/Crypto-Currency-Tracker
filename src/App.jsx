@@ -40,9 +40,9 @@ function App() {
 
   return (
     <AppShell>
-      <CoinListPage coins={coins} marketSectionRef={marketSectionRef} watchlist={handleAddToWatchlist}/>
+      <CoinListPage coins={coins} marketSectionRef={marketSectionRef} onAddToWatchlist={handleAddToWatchlist}/>
       <CoinDetailPage />
-      <WatchlistPage coins={coins} scrollToMarketSnapshot={scrollToMarketSnapshot}/>
+      <WatchlistPage coins={coins} scrollToMarketSnapshot={scrollToMarketSnapshot} watchlist={watchlist}/>
     </AppShell>
   )
 }
