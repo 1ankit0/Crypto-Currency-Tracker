@@ -7,7 +7,7 @@ import CoinRow from "../components/coins/CoinRow.jsx";
 import { useEffect, useState } from "react";
 import coinData from "../Services/coin.js";
 
-export default function CoinListPage({ coins, marketSectionRef }) {
+export default function CoinListPage({ coins, marketSectionRef,  }) {
   
   const [searchedCoin, setSearchedCoin] = useState("");
 

@@ -11,14 +11,20 @@ function App() {
   const [coins, setCoins] = useState([]);
   const [watchlist, setWatchlist] = useState([])
 
-  const watchlistCoin = ((prev))=>{
-    const alreadyAdded = prev.some((item)=> item.id === coin.id) 
+  const handleAddToWatchlist = (coin) => {
+  setWatchlist((prev) => {
+    const alreadyAdded = prev.some((item) => item.id === coin.id)
+
     if (alreadyAdded) {
+      alert('already added')
       return prev
     }
-    return [...prev, coins]
-  } 
-  setWatchlist(watchlist())
+    console.log('coin:',coin, 'prev:',prev)
+    alert('coin added')
+    return [...prev, coin]
+  })
+}
+
 
   const scrollToMarketSnapshot = ()=>{
     marketSectionRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'})
@@ -34,9 +40,9 @@ function App() {
 
   return (
     <AppShell>
-      <CoinListPage coins={coins} marketSectionRef={marketSectionRef}/>
+      <CoinListPage coins={coins} marketSectionRef={marketSectionRef} watchlist={handleAddToWatchlist}/>
       <CoinDetailPage />
-      <WatchlistPage coins={coins} scrollToMarketSnapshot={scrollToMarketSnapshot} />
+      <WatchlistPage coins={coins} scrollToMarketSnapshot={scrollToMarketSnapshot}/>
     </AppShell>
   )
 }

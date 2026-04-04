@@ -4,7 +4,7 @@ import PriceChangeDown from '../components/common/PriceChangeDown.jsx'
 import WatchlistRow from '../components/watchlist/WatchlistRow.jsx'
 import { useEffect, useRef, useState } from 'react'
 
-export default function WatchlistPage({ coins ,scrollToMarketSnapshot}) {
+export default function WatchlistPage({ coins, scrollToMarketSnapshot}) {
 
   return (
     <PageSection
