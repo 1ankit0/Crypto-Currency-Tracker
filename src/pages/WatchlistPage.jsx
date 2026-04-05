@@ -1,33 +1,12 @@
 import PageSection from "../components/layout/PageSection.jsx";
-import PriceChangeUp from "../components/common/PriceChangeUp.jsx";
 import PriceChangeDown from "../components/common/PriceChangeDown.jsx";
 import WatchlistRow from "../components/watchlist/WatchlistRow.jsx";
-import { useEffect, useRef, useState } from "react";
 
 export default function WatchlistPage({
-  coins,
   scrollToMarketSnapshot,
   watchlist,
+  onRemoveFromWatchlist,
 }) {
-  const handleRemoveCoin = (coin) =>
-    watchlist.filter((coin) => (
-      <WatchlistRow
-        key={coin.id}
-        name={coin.name}
-        symbol={coin.symbol}
-        price={coin.price}
-        change={<PriceChangeDown value="..." />}
-        action={
-          <button
-            className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600"
-            onClick={handleRemoveCoin}
-          >
-            Remove
-          </button>
-        }
-      />
-    ));
-
   return (
     <PageSection
       tag="Watchlist"
@@ -73,12 +52,11 @@ export default function WatchlistPage({
                   name={coin.name}
                   symbol={coin.symbol}
                   price={coin.price_usd}
-                  rank={coin.rank}
                   change={<PriceChangeDown value="..." />}
                   action={
                     <button
                       className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600"
-                      onClick={handleRemoveCoin}
+                      onClick={() => onRemoveFromWatchlist(coin.id)}
                     >
                       Remove
                     </button>

@@ -8,23 +8,27 @@ import coinData from './Services/coin.js'
 function App() {
   const marketSectionRef = useRef(null)
 
-  const [coins, setCoins] = useState([]);
+  const [coins, setCoins] = useState([])
   const [watchlist, setWatchlist] = useState([])
+  const [currentPage, setCurrentPage] = useState(0)
 
   const handleAddToWatchlist = (coin) => {
-  setWatchlist((prev) => {
-    const alreadyAdded = prev.some((item) => item.id === coin.id)
+    setWatchlist((prev) => {
+      const alreadyAdded = prev.some((item) => item.id === coin.id)
 
-    if (alreadyAdded) {
+      if (alreadyAdded) {
       alert('already added')
       return prev
     }
     console.log('coin:',coin, 'prev:',prev)
     alert('coin added')
     return [...prev, coin]
-  })
-}
+    })
+  }
 
+  const handleRemoveFromWatchlist = (coinId) => {
+    setWatchlist((prev) => prev.filter((item) => item.id !== coinId))
+  }
 
   const scrollToMarketSnapshot = ()=>{
     marketSectionRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'})
@@ -32,17 +36,21 @@ function App() {
   useEffect(() => {
    const loadCoinData = async () => {
    const renderData = await coinData({ start: 0, limit: 5 });
-   setCoins(renderData.data);
+   setCoins(renderData.data)
  };
- loadCoinData();
-}, []);
+ loadCoinData()
+}, [])
 
 
   return (
     <AppShell>
       <CoinListPage coins={coins} marketSectionRef={marketSectionRef} onAddToWatchlist={handleAddToWatchlist}/>
       <CoinDetailPage />
-      <WatchlistPage coins={coins} scrollToMarketSnapshot={scrollToMarketSnapshot} watchlist={watchlist}/>
+      <WatchlistPage
+        scrollToMarketSnapshot={scrollToMarketSnapshot}
+        watchlist={watchlist}
+        onRemoveFromWatchlist={handleRemoveFromWatchlist}
+      />
     </AppShell>
   )
 }
