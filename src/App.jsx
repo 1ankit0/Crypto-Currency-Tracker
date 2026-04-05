@@ -33,18 +33,36 @@ function App() {
   const scrollToMarketSnapshot = ()=>{
     marketSectionRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'})
   }
+
+  const limit = 5
+  const start = currentPage * limit
+
   useEffect(() => {
-   const loadCoinData = async () => {
-   const renderData = await coinData({ start: 0, limit: 5 });
-   setCoins(renderData.data)
- };
- loadCoinData()
-}, [])
+    const loadCoinData = async () => {
+      const renderData = await coinData({ start, limit })
+      setCoins(renderData.data)
+    }
+
+    loadCoinData()
+  }, [start])
+
+  const handlePrevPage = ()=>(
+    setCurrentPage((prev)=>Math.max(prev-1,0))
+  )
+  const handleNextPage = ()=>(
+    setCurrentPage((prev)=>prev+1)
+  )
 
 
   return (
     <AppShell>
-      <CoinListPage coins={coins} marketSectionRef={marketSectionRef} onAddToWatchlist={handleAddToWatchlist}/>
+      <CoinListPage
+        coins={coins}
+        marketSectionRef={marketSectionRef}
+        onAddToWatchlist={handleAddToWatchlist}
+        onPrevPage={handlePrevPage}
+        onNextPage={handleNextPage}
+      />
       <CoinDetailPage />
       <WatchlistPage
         scrollToMarketSnapshot={scrollToMarketSnapshot}

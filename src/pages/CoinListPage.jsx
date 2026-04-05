@@ -1,14 +1,16 @@
 import PageSection from "../components/layout/PageSection.jsx";
 import SearchInput from "../components/common/SearchInput.jsx";
 import SortButton from "../components/common/SortButton.jsx";
-import PriceChangeUp from "../components/common/PriceChangeUp.jsx";
-import PriceChangeDown from "../components/common/PriceChangeDown.jsx";
 import CoinRow from "../components/coins/CoinRow.jsx";
-import { useEffect, useState } from "react";
-import coinData from "../Services/coin.js";
+import { useState } from "react";
 
-export default function CoinListPage({ coins, marketSectionRef,onAddToWatchlist  }) {
-  
+export default function CoinListPage({
+  coins,
+  marketSectionRef,
+  onAddToWatchlist,
+  onPrevPage,
+  onNextPage
+}) {
   const [searchedCoin, setSearchedCoin] = useState("");
 
   const handlePriceChange = () => {};
@@ -89,8 +91,26 @@ export default function CoinListPage({ coins, marketSectionRef,onAddToWatchlist 
             </div>
           </div>
 
-          <div className="rounded-2xl border border-dashed border-slate-200 bg-white/60 px-4 py-3 text-xs text-slate-500">
-            Showing 4 of 120 asset. Use the search bar to find a specific coin.
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-dashed border-slate-200 bg-white/60 px-4 py-3 text-xs text-slate-500">
+            <span>
+              Showing {filteredCoins.length} assets. Use the search bar to find a specific coin.
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600"
+                aria-label="Previous page"
+                onClick={onPrevPage}
+              >
+                &larr;
+              </button>
+              <button
+                className="cursor-pointer rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600"
+                aria-label="Next page"
+                onClick={onNextPage}
+              >
+                &rarr;
+              </button>
+            </div>
           </div>
         </div>
       </PageSection>
